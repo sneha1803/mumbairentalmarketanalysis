@@ -1,0 +1,46 @@
+USE mumbai_rent;
+SELECT * FROM prop_data_clean;
+---------------------------------------------------------------------------------------
+-- DATA ANALYSIS --
+
+-- What is a average price of rent with repsect to no. of bedrooms?
+SELECT COUNT(bedroom_num),bedroom_num, Avg(price)
+FROM prop_data_clean GROUP BY bedroom_num;
+
+-- What is a average price of rent with repsect to no. of bathrooms?
+SELECT COUNT(bathroom_num),bathroom_num, Avg(price)
+FROM prop_data_clean GROUP BY bathroom_num;
+
+-- What is a average price of rent for each locality?
+SELECT COUNT(locality),locality, Avg(price)
+FROM prop_data_clean GROUP BY locality ORDER BY COUNT(locality);
+
+-- What is a average price of rent for furnishing level?
+SELECT COUNT(furnishing), furnishing, Avg(price)
+FROM prop_data_clean GROUP BY furnishing;
+
+-- Change in rent prices over the years?
+SELECT COUNT(post_year), post_year, Avg(Price)
+FROM prop_data_clean GROUP BY post_year;
+
+-- No. of flats that are
+-- i East Facing: 507
+SELECT * FROM prop_data_clean
+WHERE description LIKE '%East Facing%';
+-- ii West Facing: 105
+SELECT * FROM prop_data_clean
+WHERE description LIKE '%West Facing%';
+-- iii North Facing: 226
+SELECT * FROM prop_data_clean
+WHERE description LIKE '%North%';
+-- iv South Facing: 38 
+SELECT * FROM prop_data_clean
+WHERE description LIKE '%South%';
+
+-- Provisons Available for Safety
+-- i Gated Community: 22
+SELECT * FROM prop_data_clean
+WHERE description LIKE '%gated%';
+-- ii Security: 96
+SELECT * FROM prop_data_clean
+WHERE description LIKE '%Security%';
